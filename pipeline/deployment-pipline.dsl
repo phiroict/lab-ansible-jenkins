@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Delete QA servers') {
+            steps {
+                build 'QA-delete-instances'
+            }
+        }
         stage('Create QA servers') {
             steps {
                 build 'QA-create-instances'
@@ -16,15 +21,20 @@ pipeline {
                 build 'QA-smoke-test'
             }
         }
-        stage('Delete QA servers') {
+        stage('Create PROD instances') {
             steps {
-                build 'QA-delete-instances'
+                build 'PROD-create-instances'
+            }
+        }
+        stage('Install PROD applications') {
+            steps {
+                build 'PROD-install-apps'
             }
         }
     }
     post {
         failure {
-          build 'QA-delete-instances'
+            build 'QA-delete-instances'
         }
-      }
+    }
 }
