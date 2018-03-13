@@ -21,13 +21,13 @@ Note, for now it only describes the Openstack QA part.
 * Get the openstack.pem key and put this in the docker/artefacts folder
 * Install docker 
 * Change the jenkins-ci/docker/artefacts/ssh.cfg project to point to your jump host
-So in this case replace the _workstation-64b4.rhpds.opentlc.com_ string with your jumphost. (This is for openstack, aws does 
+So in this case replace the _workstation-02d7.rhpds.opentlc.com_ string with your jumphost. (This is for openstack, aws does 
 this differently)
 
 ```
-Host workstation-64b4.rhpds.opentlc.com
+Host workstation-02d7.rhpds.opentlc.com
   User cloud-user
-  Hostname workstation-64b4.rhpds.opentlc.com
+  Hostname workstation-02d7.rhpds.opentlc.com
   ForwardAgent no
   Compression yes
   IdentityFile /var/lib/awx/.ssh/openstack.pem
@@ -36,7 +36,7 @@ Host workstation-64b4.rhpds.opentlc.com
 Host 10.10.10.*
   IdentityFile /var/lib/awx/.ssh/openstack.pem
   User cloud-user
-  ProxyCommand ssh -F /var/lib/awx/.ssh/ssh.cfg workstation-64b4.rhpds.opentlc.com -W %h:%p
+  ProxyCommand ssh -F /var/lib/awx/.ssh/ssh.cfg workstation-02d7.rhpds.opentlc.com -W %h:%p
 
 Host *
   StrictHostKeyChecking no
