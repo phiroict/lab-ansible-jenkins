@@ -13,4 +13,9 @@ docker run \
   -p 8080:8080 -p 50000:50000 \
   -v jobs:/var/jenkins_home \
   -d \
-  phiroict/ansible-jenkins:20180310
+  phiroict/ansible-jenkins:20180313
+# Copy the ssh key over to the box as the volume would overwrite it
+docker exec -d lab-redhat-ansible mkdir -p /var/jenkins_home/.ssh/
+docker cp /home/pr1438/.ssh/id_rsa_aws_proxy lab-redhat-ansible:/var/jenkins_home/.ssh/
+docker cp /home/pr1438/.ssh/id_rsa_aws_proxy.pem lab-redhat-ansible:/var/jenkins_home/.ssh/
+docker exec -d lab-redhat-ansible chmod 0400 /var/jenkins_home/.ssh/*

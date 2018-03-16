@@ -1,2 +1,3 @@
 *.pem
 /.idea
+id_rsa*
